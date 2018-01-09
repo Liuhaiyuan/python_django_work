@@ -1,9 +1,9 @@
 {% load staticfiles %}
 <div class="container">
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default" role="navigation" hight="500px">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
-                <img src="{% static '/images/logo.png' %}" width="100px">
+                <img src="{% static '/images/logo_header.png' %}" width="100px">
             </a>
         </div>
         <div>
@@ -11,7 +11,12 @@
                 <li><a href="{% url 'blog_app:blog_app_title' %}">BLOG</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li><a href="#">{{ user.username }}</a>
+                <li><a href="{% url 'account:user_logout' %}">Logout</a>
+                {% else %}
                 <li><a href="{% url 'account:user_login' %}">LOGIN</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
